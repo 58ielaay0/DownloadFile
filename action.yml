@@ -1,0 +1,20 @@
+name: 'Download file from Nexus'
+description: 'Download a file from a Nexus download URL'
+inputs:
+  NexusFileURL: 
+    description:  'The URL of the file on Nexus'
+    required: true
+  OutFileLocation:
+    description:  'The path where the file should be saved (filename included)'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - id: downloadfile
+      name: Download file
+      run: |
+          [securestring]$secStringPassword = ConvertTo-SecureString "$env:NEXUS_PASSWORD" -AsPlainText -Force
+          [pscredential]$credObject = New-Object System.Management.Automation.PSCredential ("$env:NEXUS_USER", $secStringPassword)
+          
+          ${{ github.action_path }}/DownloadNexus.ps1 -Credential $credObject -NexusFileURL ${{ inputs.NexusFileURL }} -OutFileLocation ${{ inputs.OutFileLocation }}
+      shell: pwsh
