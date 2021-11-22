@@ -1,4 +1,4 @@
-# NexusUpload
+# NexusDownload
 
 This is a Github action which download files on a Nexus server.
 
