@@ -20,6 +20,6 @@ This is a Github action which download files on a Nexus server.
     NEXUS_USER: ${{ secrets.NEXUS_USER }}
     NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
   with:
-    NexusURL: 'https://nexus.test.com/repository/raw/directory/file.zip'
+    NexusFileURL: 'https://nexus.test.com/repository/raw/directory/file.zip'
     OutFileLocation: '.\file.zip'
 ```
